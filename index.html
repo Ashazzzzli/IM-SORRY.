@@ -41,9 +41,24 @@
             }
         }
 
+        /* Styling for the fixed "I'm so fucking sorry." text at the bottom */
+        .sorry-text {
+            position: fixed;
+            bottom: 10px; /* Positioned at the bottom */
+            left: 50%;
+            transform: translateX(-50%); /* Centered horizontally */
+            font-size: 24px;
+            font-weight: bold;
+            color: #ed1c24;
+            text-shadow: 2px 2px 8px black;
+        }
+
     </style>
 </head>
 <body>
+    <!-- The "I'm so fucking sorry." text -->
+    <div class="sorry-text">I'm so fucking sorry.</div>
+
     <script>
         const messages = [
             "Forgive me", 
