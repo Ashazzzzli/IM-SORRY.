@@ -19,36 +19,6 @@
             position: relative;
         }
 
-        h1 {
-            font-size: 4rem; /* Larger font size */
-            margin-bottom: 30px;
-            text-align: center;
-            width: fit-content;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
-            color: #ed1c24; /* Red text color */
-            animation: rotateShadow 3s linear infinite; /* Rotating shadow effect */
-        }
-
-        @keyframes rotateShadow {
-            0% {
-                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
-            }
-            25% {
-                text-shadow: -5px 5px 15px black, 5px -5px 15px #ed1c24, 5px 5px 15px black, -5px -5px 15px black;
-            }
-            50% {
-                text-shadow: -5px -5px 15px black, 5px 5px 15px #ed1c24, -5px 5px 15px black, 5px -5px 15px black;
-            }
-            75% {
-                text-shadow: 5px -5px 15px black, -5px 5px 15px #ed1c24, -5px -5px 15px black, 5px 5px 15px black;
-            }
-            100% {
-                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
-            }
-        }
-
         .bubble {
             position: absolute;
             font-size: 20px;
@@ -72,44 +42,39 @@
             }
         }
 
-        .kiss {
-            position: absolute;
-            font-size: 25px;
-            font-weight: bold;
-            opacity: 0;
-            animation: kissEffect 1.5s forwards;
-            color: #ed1c24;
-            text-shadow: 2px 2px 8px black;
-        }
-
-        @keyframes kissEffect {
+        @keyframes rotateShadow {
             0% {
-                opacity: 0;
-                transform: scale(0.5);
+                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
+            }
+            25% {
+                text-shadow: -5px 5px 15px black, 5px -5px 15px #ed1c24, 5px 5px 15px black, -5px -5px 15px black;
             }
             50% {
-                opacity: 1;
-                transform: scale(1);
+                text-shadow: -5px -5px 15px black, 5px 5px 15px #ed1c24, -5px 5px 15px black, 5px -5px 15px black;
+            }
+            75% {
+                text-shadow: 5px -5px 15px black, -5px 5px 15px #ed1c24, -5px -5px 15px black, 5px 5px 15px black;
             }
             100% {
-                opacity: 0;
-                transform: scale(0.5) translateY(-50px);
+                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
             }
         }
     </style>
 </head>
 <body>
-    <h1>I'm Sorry Baby</h1>
-
     <script>
-        const messages = ["I'm sorry baby", "I'm so sorry baby", "Please forgive me", "I didn't mean to", "I'm really sorry baby"];
-        
+        const messages = [
+            "I'm sorry baby", "I'm so sorry baby", "Please forgive me", "I didn't mean to", 
+            "I'm really sorry baby", "I promise it won't happen again", "Please don't be mad", 
+            "I love you", "I miss you", "I'm sorry for everything", "I hate hurting you", 
+            "I was wrong", "I hope you forgive me", "I'm so sorry", "I'll do better", 
+            "I can't stand making you upset", "You're everything to me", "I regret it so much", 
+            "Please take me back", "I can't lose you"
+        ];
+
         // Show message bubbles automatically
         function showMessageBubbles() {
-            const colors = ["#ed519c", "#000000"]; // Pink and black
-            const strokeColors = ["black", "#ca6d99"]; // Black stroke for pink and pink stroke for black
-
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 40; i++) {  // Increase the number of bubbles (40 per interval)
                 const randomMessage = messages[Math.floor(Math.random() * messages.length)];
                 createMessageBubble(randomMessage);
             }
@@ -126,7 +91,7 @@
         }
 
         // Show messages every 2 seconds
-        setInterval(showMessageBubbles, 2000);
+        setInterval(showMessageBubbles, 100);  // Increase the frequency to generate more bubbles faster
 
         // Show initial bubbles as soon as page loads
         window.onload = showMessageBubbles;
