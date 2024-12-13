@@ -1,88 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>I'm Sorry Baby</title>
-  <style>
-    body {
-      background-color: pink;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      margin: 0;
-      position: relative;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry Baby</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: pink; /* Pink background */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .message {
-      color: black;
-      font-size: 20px;
-      position: absolute;
-      animation: popUp 2s ease-in-out infinite, glow 1.5s ease-in-out infinite;
-      opacity: 1;
-    }
+        h1 {
+            font-size: 4rem; /* Larger font size */
+            margin-bottom: 30px;
+            text-align: center;
+            width: fit-content;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+            color: #ed1c24; /* Red text color */
+            animation: rotateShadow 3s linear infinite; /* Rotating shadow effect */
+        }
 
-    /* Pop-up animation */
-    @keyframes popUp {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1.2);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+        @keyframes rotateShadow {
+            0% {
+                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
+            }
+            25% {
+                text-shadow: -5px 5px 15px black, 5px -5px 15px #ed1c24, 5px 5px 15px black, -5px -5px 15px black;
+            }
+            50% {
+                text-shadow: -5px -5px 15px black, 5px 5px 15px #ed1c24, -5px 5px 15px black, 5px -5px 15px black;
+            }
+            75% {
+                text-shadow: 5px -5px 15px black, -5px 5px 15px #ed1c24, -5px -5px 15px black, 5px 5px 15px black;
+            }
+            100% {
+                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
+            }
+        }
 
-    /* Glow effect animation */
-    @keyframes glow {
-      0% {
-        text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px pink;
-      }
-      50% {
-        text-shadow: 0 0 20px pink, 0 0 30px pink, 0 0 40px pink;
-      }
-      100% {
-        text-shadow: 0 0 10px pink, 0 0 20px pink, 0 0 30px pink;
-      }
-    }
-  </style>
+        .bubble {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 2s forwards;
+            color: #ed1c24; /* Red text color */
+            text-shadow: 2px 2px 8px black;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+
+        .kiss {
+            position: absolute;
+            font-size: 25px;
+            font-weight: bold;
+            opacity: 0;
+            animation: kissEffect 1.5s forwards;
+            color: #ed1c24;
+            text-shadow: 2px 2px 8px black;
+        }
+
+        @keyframes kissEffect {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.5) translateY(-50px);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div id="container"></div>
+    <h1>I'm Sorry Baby</h1>
 
-  <script>
-    const container = document.getElementById('container');
-    const totalMessages = 250;
-
-    function generateMessages() {
-      container.innerHTML = ''; // Clear previous messages
-      for (let i = 0; i < totalMessages; i++) {
-        const message = document.createElement('div');
-        message.classList.add('message');
-        message.textContent = "I'm sorry baby";
+    <script>
+        const messages = ["I'm sorry baby", "I'm so sorry baby", "Please forgive me", "I didn't mean to", "I'm really sorry baby"];
         
-        // Set random positions and animation timings
-        message.style.top = `${Math.random() * 100}vh`;
-        message.style.left = `${Math.random() * 100}vw`;
+        // Show message bubbles automatically
+        function showMessageBubbles() {
+            const colors = ["#ed519c", "#000000"]; // Pink and black
+            const strokeColors = ["black", "#ca6d99"]; // Black stroke for pink and pink stroke for black
 
-        // Randomize animation delays for each message to create varied timings
-        message.style.animationDelay = `${Math.random() * 2}s`;
-        
-        container.appendChild(message);
-      }
-    }
+            for (let i = 0; i < 8; i++) {
+                const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+                createMessageBubble(randomMessage);
+            }
+        }
 
-    function resetMessages() {
-      generateMessages();
-    }
+        function createMessageBubble(text) {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            bubble.textContent = text;
+            bubble.style.left = `${Math.random() * (window.innerWidth - 200)}px`;
+            bubble.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+            document.body.appendChild(bubble);
+            setTimeout(() => bubble.remove(), 2000); // Remove after animation ends
+        }
 
-    setInterval(resetMessages, 1500); // Regenerate messages every 1.5 seconds
-    generateMessages(); // Initial load
-  </script>
+        // Show messages every 2 seconds
+        setInterval(showMessageBubbles, 2000);
+
+        // Show initial bubbles as soon as page loads
+        window.onload = showMessageBubbles;
+    </script>
 </body>
 </html>
