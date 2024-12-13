@@ -13,7 +13,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
             font-family: Arial, sans-serif;
             overflow: hidden;
             position: relative;
@@ -42,34 +41,38 @@
             }
         }
 
-        @keyframes rotateShadow {
-            0% {
-                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
-            }
-            25% {
-                text-shadow: -5px 5px 15px black, 5px -5px 15px #ed1c24, 5px 5px 15px black, -5px -5px 15px black;
-            }
-            50% {
-                text-shadow: -5px -5px 15px black, 5px 5px 15px #ed1c24, -5px 5px 15px black, 5px -5px 15px black;
-            }
-            75% {
-                text-shadow: 5px -5px 15px black, -5px 5px 15px #ed1c24, -5px -5px 15px black, 5px 5px 15px black;
-            }
-            100% {
-                text-shadow: 5px 5px 15px black, -5px -5px 15px #ed1c24, 5px -5px 15px black, -5px 5px 15px black;
-            }
-        }
     </style>
 </head>
 <body>
     <script>
         const messages = [
-            "I'm sorry baby", "I'm so sorry baby", "Please forgive me", "I didn't mean to", 
-            "I'm really sorry baby", "I promise it won't happen again", "Please don't be mad", 
-            "I love you", "I miss you", "I'm sorry for everything", "I hate hurting you", 
-            "I was wrong", "I hope you forgive me", "I'm so sorry", "I'll do better", 
-            "I can't stand making you upset", "You're everything to me", "I regret it so much", 
-            "Please take me back", "I can't lose you"
+            "Forgive me", 
+            "I'm sorry", 
+            "I’m late", 
+            "Belated!", 
+            "I missed it!", 
+            "So sorry!", 
+            "I’m late, baby", 
+            "Oops, late", 
+            "Forgive me, love", 
+            "Missed your day", 
+            "Late but love you", 
+            "I’m sorry, darling", 
+            "I hope you forgive me", 
+            "Happy belated", 
+            "I’m sorry, sweetheart", 
+            "I was late, forgive me", 
+            "Better late than never", 
+            "Sorry for being late", 
+            "Belated love", 
+            "Love you, sorry", 
+            "I missed the time", 
+            "Please forgive me", 
+            "Late, but still love", 
+            "I’m the worst, sorry", 
+            "So sorry for being late", 
+            "Belated birthday love", 
+            "Late but thinking of you"
         ];
 
         // Show message bubbles automatically
@@ -84,14 +87,19 @@
             const bubble = document.createElement('div');
             bubble.classList.add('bubble');
             bubble.textContent = text;
-            bubble.style.left = `${Math.random() * (window.innerWidth - 200)}px`;
-            bubble.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+
+            // Randomize position within the entire screen area
+            const randomX = Math.random() * (window.innerWidth - 200); // Ensure the bubbles are within bounds
+            const randomY = Math.random() * (window.innerHeight - 100); // Ensure they are not off-screen
+            bubble.style.left = `${randomX}px`;
+            bubble.style.top = `${randomY}px`;
+
             document.body.appendChild(bubble);
             setTimeout(() => bubble.remove(), 2000); // Remove after animation ends
         }
 
-        // Show messages every 2 seconds
-        setInterval(showMessageBubbles, 100);  // Increase the frequency to generate more bubbles faster
+        // Show messages every 800 milliseconds
+        setInterval(showMessageBubbles, 800);  // Adjust the interval for slower bubble appearance
 
         // Show initial bubbles as soon as page loads
         window.onload = showMessageBubbles;
